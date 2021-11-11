@@ -1,0 +1,83 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+<!--Title page-->
+{% block title %} {{ product.title }} {% endblock %}
+
+{% block body %}
+<!-- Slider -->
+<section>
+    <div class="row g-0 h-100">
+        <div class="col-lg-6 d-flex">
+            <div class="content mx-auto align-self-center px-2 my-5">
+                <small class="d-block text-primary mb-3">
+                    <span class="badge fw-bold bg-red me-2"><h4 class="fw-bold">PROMOCIÓN</h4></span> Revisa todas nuetras promociones
+                </small>
+                <h1 class="fw-bold">{{ product.title }}<span class="text-primary">.</span></h1>
+
+                <p>{{ product.description |safe}}</p>
+
+                <a class="btn btn-primary mb-4" href="#on_sale">Has tu pedido</a>
+                <div class="d-flex">
+                    <div class="d-flex me-4">
+                        <img class="me-2"
+                             src="{% static '' %}images/icons/EnvioGratis.png" style="height: 45px; width: auto; padding-top: 5px;">
+                        <div>
+                            <small>Envío gratis al</small>
+                            <p class="fw-bold mr-0">90% del país</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <img class="me-2"
+                             src="{% static '' %}images/icons/PagoContraEntrega.png" style="height: 50px; width: auto; padding-top: 5px;">
+                        <div>
+                            <small>Pago contra</small>
+                            <p class="fw-bold mb-0">Entrega</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 d-flex bg-light">
+            <div class="content mx-auto align-self-center px-4 my-5">
+
+                <div class="carousel slide carousel-fade" data-bs-ride="carousel" id="carouselExampleFade">
+                    <div class="carousel-inner">
+
+
+                        {% for rs in images %}
+                            {% if images.0 == rs %}
+                                <div class="carousel-item active">
+                                    <img alt="..." class="d-block"
+                                         src="{{ rs.image.url }}" style="height: 500px; width: auto;">
+                                </div>
+                            {% elif images.0 != rs %}
+                                <div class="carousel-item">
+                                    <img alt="..." class="d-block"
+                                         src="{{ rs.image.url }}" style="height: 500px; width: auto;">
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselExampleFade"
+                            type="button">
+                        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselExampleFade"
+                            type="button">
+                        <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Slider -->
+
+{% block packages %} {% include 'product/packages.html' %}{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load static %}
+
+<section class="d-flex h-100">
+      <div class="container mx-auto align-self-center px-10 my-5 pt-5">
+        <h2 class="display-4 fw-bold">Últimos productos<span class="text-primary">.</span></h2>
+        <p class="lead mb-5">Revisa nuestras promociones</p>
+        <div class="row gx-5">
+          {% for product in products_latest %}
+          <div class="col-lg-4 py-4">
+            <a href="/product/{{ product.id }}/{{ product.slug }}" class="text-decoration-none">
+              <img src="{{ product.image.url }}" class="img-fluid mb-4" style="height: 400px;">
+              <div class="d-flex mb-4">
+                <p class="flex-grow-1 text-dark mb-0">{{ product.title }}</p>
+                <p class="lead text-dark fw-bold"><span class="text-primary">>${{ product.price }}</</span></p>
+              </div>
+              <p class="lead text-dark fw-bold mb-4">Todo tipo de tallas y colores</p>
+              <p class="text-primary fw-bold">Ver detalles <i class="fas fa-arrow-right ms-2"></i></p>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+</section>
